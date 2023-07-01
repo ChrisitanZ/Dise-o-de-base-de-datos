@@ -1,0 +1,28 @@
+--Diseñar la función o procedimiento almacenado que permita determinar el nombre del Traveler con su genero, nacionalidad y redes sociales.(JHAN)
+
+CREATE FUNCTION obtener_info_Traveler()
+RETURNS TABLE
+AS RETURN
+    SELECT k.nombre, rk.genero, rk.nacionalidad, rk.redes_sociales
+    FROM keeper k
+    JOIN Registro_Kepper rk ON k.id_keeper = rk.keeper_keeperid;
+
+go;
+
+SELECT * FROM obtener_info_Traveler();
+GO;
+
+--Obtener la lista de viviendas disponibles en una determinada ciudad que tienen áreas verdes.(JHAN)
+SELECT v.id_viviendas, v.ciudad, v.pais, v.direccion, v.cant_pisos, v.cant_mascotas
+FROM viviendas v
+WHERE v.ciudad = 'São Paulo'
+    AND v.areas_verdes = 1;
+
+-- Obtener el número de viviendas disponibles en cada ciudad junto con el total de viviendas en esa ciudad.(JHAN)
+SELECT v.ciudad, COUNT(v.id_viviendas) AS total_viviendas, COUNT(CASE WHEN vt.traveler_id_traveler IS NULL THEN 1 END) AS viviendas_disponibles
+FROM viviendas v
+LEFT JOIN vivienda_traveler vt ON v.id_viviendas = vt.viviendas_id_viviendas
+GROUP BY v.ciudad
+
+
+go;
