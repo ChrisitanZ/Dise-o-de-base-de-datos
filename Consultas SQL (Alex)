@@ -1,0 +1,33 @@
+-- Elaborar una consulta que permita determinar la cantidad de reserva por año y mes (Alex)
+
+	   SELECT YEAR(fecha) AS ANIO, -- MONTH(fecha),
+	   CASE WHEN MONTH(fecha) = 1 THEN 'Enero'
+	    WHEN MONTH(fecha) = 2 THEN 'Febrero'
+	    WHEN MONTH(fecha) = 3 THEN 'Marzo'
+	    WHEN MONTH(fecha) = 4 THEN 'Abril'
+	    WHEN MONTH(fecha) = 5 THEN 'Mayo'
+		WHEN MONTH(fecha) = 6 THEN 'Junio'
+		WHEN MONTH(fecha) = 7 THEN 'Julio'
+		WHEN MONTH(fecha) = 8 THEN 'Agosto'
+		WHEN MONTH(fecha) = 9 THEN 'Setiembre'
+		WHEN MONTH(fecha) = 10 THEN 'Octubre'
+		WHEN MONTH(fecha) = 11 THEN 'Noviembre'
+		WHEN MONTH(fecha) = 12 THEN 'Diciembre'
+		END  AS MES,
+	   count(1)  AS CANTIDAD
+	   FROM reserva
+	   group by YEAR(fecha), MONTH(fecha) ;
+
+	   ------------------------------------------
+--Elaborar un consulta que permita obtener el registro traveler de los británico, peruanos, estadounidense, italianos, españoles y Mexicano en forma descendente  (Alex)
+
+SELECT nacionalidad,  count(1) AS cantidad  FROM registro_traveler 
+where nacionalidad in  ('Estadounidense','Italiano','Mexicano', 'Español', 'Alemán', 'Peruano', 'Británico') 
+group by nacionalidad 
+order by cantidad desc
+
+--Elaborar una consulta que muestre el nombre, apellido nacionalidad y direccion del genero masculino (Alex)
+
+select t.nombre ,t.apellido  , rt.nacionalidad, t.direccion from  traveler t 
+inner join  registro_traveler rt on t.id_traveler=rt.traveler_travelerid 
+where rt.genero='Masculino';
