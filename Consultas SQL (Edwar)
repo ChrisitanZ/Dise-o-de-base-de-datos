@@ -1,0 +1,27 @@
+--Obtener todas las reservas realizadas en una fecha específica:(EDWAR)
+SELECT r.id_reserva, r.fecha, r.hora, t.requisitos, t.firma
+FROM reserva r
+JOIN trato t ON t.id_trato = r.trato_id_trato
+WHERE r.fecha = '2023-06-01';
+
+--Obtener la lista de los Keepers y su información de contacto ordenados alfabéticamente por nombre:(Edwar)
+SELECT k.nombre, rk.genero, rk.nacionalidad, rk.redes_sociales
+FROM keeper k
+JOIN Registro_Kepper rk ON k.id_keeper = rk.keeper_keeperid
+ORDER BY k.nombre ASC;
+go;
+
+--Obtener el nombre y la nacionalidad de los Keepers que tienen antecedentes penales:(Edwar)
+CREATE FUNCTION obtener_keepers_con_antecedentes()
+RETURNS TABLE
+AS
+RETURN
+    SELECT rk.registro_penales ,count(*) 
+    FROM keeper k
+    JOIN Registro_Kepper rk ON k.id_keeper = rk.keeper_keeperid
+	group by  rk.registro_penales;
+
+
+go;
+SELECT * FROM obtener_keepers_con_antecedentes();
+GO;
