@@ -1,0 +1,487 @@
+use HouseKeeper2
+
+db.createCollection("usuarios")
+
+db.usuarios.insertMany([
+  {
+   id_usuario:1234,
+    nombre:"Juan",
+    apellido:"Pérez",
+    dni:74045678,
+    telefono:987654321,
+    direccion:"Jirón Los Pinos 123 Perú"
+  },
+  {
+    id_usuario:2130,
+    nombre:"María",
+    apellido:"Gómez",
+    dni:87654321,
+    telefono:956789457,
+    direccion:"Av. Principal 789 Argentina"
+  },
+    {
+    id_usuario:6001,
+    nombre:"Ricardo",
+    apellido:"Quispe",
+    dni:978515148,
+    telefono:04817524,
+    direccion:"San miguel Lote 2 manzana B3"
+    },
+    {
+    id_usuario:7534,
+    nombre:"Bruno",
+    apellido:"Naro",
+    dni:941524448,
+    telefono:48115249,
+    direccion:"Avenida Rivadavia 1234"
+    }
+])
+
+
+
+db.createCollection("viviendas")
+
+db.viviendas.insertMany([
+    // Keeper
+  {id_viviendas: 1, ciudad: 'Lima', pais: 'Peru', direccion: 'San miguel Lote 2 manzana B3', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 2, ciudad: 'Buenos Aires', pais: 'Argentina', direccion: 'Avenida Rivadavia 1234', cant_pisos: 2, cant_mascotas: 2, areas_verdes: 1},
+  {id_viviendas: 3, ciudad: 'Ciudad de Mexico', pais: 'Mexico', direccion: 'Calle Juarez 123 colonia central', cant_pisos: 1, cant_mascotas: 3, areas_verdes: 1},
+  {id_viviendas: 4, ciudad: 'Madrid', pais: 'España', direccion: 'Calle Gran Vía 28013', cant_pisos: 4, cant_mascotas: 0, areas_verdes: 0},
+  {id_viviendas: 5, ciudad: 'Barcelona', pais: 'España', direccion: 'Calle Rambla de Catalunya 08008', cant_pisos: 5, cant_mascotas: 4, areas_verdes: 1},
+  {id_viviendas: 11, ciudad: 'Lisboa', pais: 'Portugal', direccion: 'Rua Principal 678', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 12, ciudad: 'São Paulo', pais: 'Brasil', direccion: 'Av. Paulista 890', cant_pisos: 1, cant_mascotas: 2, areas_verdes: 0},
+  {id_viviendas: 13, ciudad: 'Berlín', pais: 'Alemania', direccion: 'Karl-Marx-Allee 345', cant_pisos: 2, cant_mascotas: 3, areas_verdes: 0},
+  {id_viviendas: 14, ciudad: 'Roma', pais: 'Italia', direccion: 'Via Veneto 789', cant_pisos: 4, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 15, ciudad: 'París', pais: 'Francia', direccion: 'Boulevard Saint-Michel 901', cant_pisos: 2, cant_mascotas: 3, areas_verdes: 1},
+  {id_viviendas: 16, ciudad: 'New York', pais: 'Estados Unidos', direccion: 'Street One 456', cant_pisos: 1, cant_mascotas: 0, areas_verdes: 0},
+  {id_viviendas: 17, ciudad: 'Lisboa', pais: 'Portugal', direccion: 'Rua das Flores 345', cant_pisos: 2, cant_mascotas: 0, areas_verdes: 1},
+  {id_viviendas: 18, ciudad: 'Roma', pais: 'Italia', direccion: 'Via del Corso 567', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 19, ciudad: 'Montevideo', pais: 'Uruguay', direccion: 'Calle Libertad 123', cant_pisos: 2, cant_mascotas: 3, areas_verdes: 1},
+  {id_viviendas: 20, ciudad: 'Londres', pais: 'Reino Unido', direccion: 'Via del Corso 567', cant_pisos: 4, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 21, ciudad: 'Bogota', pais: 'Colombia', direccion: 'Via del Corso 567', cant_pisos: 2, cant_mascotas: 2, areas_verdes: 0},
+  {id_viviendas: 22, ciudad: 'São Paulo', pais: 'Brasil', direccion: 'Avenida Paulista 901', cant_pisos: 3, cant_mascotas: 3, areas_verdes: 0},
+  {id_viviendas: 23, ciudad: 'New York', pais: 'Estados Unidos', direccion: 'Broadway 234', cant_pisos: 1, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 24, ciudad: 'Buenos Aires', pais: 'Argentina', direccion: 'Avenida de Mayo 123', cant_pisos: 2, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 25, ciudad: 'París', pais: 'Francia', direccion: 'Rue du Commerce 567', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 1},
+
+  // Traveler
+  {id_viviendas: 6, ciudad: 'Lima', pais: 'Peru', direccion: 'Jirón Los Pinos 123', cant_pisos: 2, cant_mascotas: 4, areas_verdes: 1},
+  {id_viviendas: 7, ciudad: 'Buenos Aires', pais: 'Argentina', direccion: 'Av. Principal 789', cant_pisos: 1, cant_mascotas: 2, areas_verdes: 1},
+  {id_viviendas: 8, ciudad: 'Ciudad de Mexico', pais: 'Mexico', direccion: 'Av. Juárez 459', cant_pisos: 3, cant_mascotas: 0, areas_verdes: 1},
+  {id_viviendas: 9, ciudad: 'Madrid', pais: 'España', direccion: 'Calle Mayor 456', cant_pisos: 4, cant_mascotas: 4, areas_verdes: 1},
+  {id_viviendas: 10, ciudad: 'Barcelona', pais: 'España', direccion: 'Av. Diagonal 789', cant_pisos: 5, cant_mascotas: 0, areas_verdes: 1},
+  {id_viviendas: 26, ciudad: 'Ciudad de Mexico', pais: 'Mexico', direccion: 'Calle Primera 789', cant_pisos: 1, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 27, ciudad: 'Bogota', pais: 'Colombia', direccion: 'Avenida Central 456', cant_pisos: 2, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 28, ciudad: 'São Paulo', pais: 'Brasil', direccion: 'Rua Principal 789', cant_pisos: 4, cant_mascotas: 2, areas_verdes: 1},
+  {id_viviendas: 29, ciudad: 'New York', pais: 'Estados Unidos', direccion: 'Main Street 456', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 30, ciudad: 'París', pais: 'Francia', direccion: 'Rue Principale 789', cant_pisos: 2, cant_mascotas: 3, areas_verdes: 0},
+  {id_viviendas: 31, ciudad: 'Roma', pais: 'Italia', direccion: 'Viale Maggiore 456', cant_pisos: 2, cant_mascotas: 2, areas_verdes: 0},
+  {id_viviendas: 32, ciudad: 'Berlín', pais: 'Alemania', direccion: 'Hauptstraße 789', cant_pisos: 2, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 33, ciudad: 'Lisboa', pais: 'Portugal', direccion: 'Main Street 456', cant_pisos: 1, cant_mascotas: 0, areas_verdes: 0},
+  {id_viviendas: 34, ciudad: 'Londres', pais: 'Reino Unido', direccion: 'Regent Street 578', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 35, ciudad: 'Ontario', pais: 'Canadá', direccion: 'Avenue Principale 456', cant_pisos: 2, cant_mascotas: 0, areas_verdes: 0},
+  {id_viviendas: 36, ciudad: 'Roma', pais: 'Italia', direccion: 'Via Roma 789', cant_pisos: 3, cant_mascotas: 1, areas_verdes: 1},
+  {id_viviendas: 37, ciudad: 'Ciudad de Mexico', pais: 'Mexico', direccion: 'Boulevard Principal 456', cant_pisos: 1, cant_mascotas: 2, areas_verdes: 0},
+  {id_viviendas: 38, ciudad: 'New York', pais: 'Estados Unidos', direccion: 'Main Street 789', cant_pisos: 2, cant_mascotas: 0, areas_verdes: 1},
+  {id_viviendas: 39, ciudad: 'Ciudad de Mexico', pais: 'Mexico', direccion: 'Calle del Sol 412', cant_pisos: 1, cant_mascotas: 1, areas_verdes: 0},
+  {id_viviendas: 40, ciudad: 'Berlín', pais: 'Alemania', direccion: 'Unter den Linden 748', cant_pisos: 3, cant_mascotas: 0, areas_verdes: 1}
+
+])
+
+db.createCollection("keeper")
+
+db.keeper.insertMany([
+  {id_keeper: 1, nombre: 'Ricardo', apellido: 'Quispe', dni: 97851514, telefono: 04817524, direccion: 'San Miguel Lote 2 Manzana B3 Perú'},
+  {id_keeper: 2, nombre: 'Bruno', apellido: 'Naro', dni: 941524448, telefono: 48115249, direccion: 'Avenida Rivadavia 1234 Argentina'},
+  {id_keeper: 3, nombre: 'Jhon', apellido: 'Quenta', dni: 985152236, telefono: 781562624, direccion: 'Calle Juarez 123 Colonia Central México'},
+  {id_keeper: 4, nombre: 'Ignacio', apellido: 'Manrique', dni: 915144742, telefono: 714785496, direccion: 'Calle Gran Vía 28013 España'},
+  {id_keeper: 5, nombre: 'Elizabeth', apellido: 'Alpes', dni: 963652658, telefono: 974857145, direccion: 'Calle Rambla de Catalunya 08008 España'},
+  {id_keeper: 6, nombre: 'Mónica', apellido: 'Hernández', dni: 210987654, telefono: 78901234, direccion: 'Rua Principal 678 Lisboa Portugal'},
+  {id_keeper: 7, nombre: 'Andrés', apellido: 'González', dni: 109876543, telefono: 89012345, direccion: 'Av. Paulista 890 São Paulo Brasil'},
+  {id_keeper: 8, nombre: 'Marcela', apellido: 'Castillo', dni: 876543210, telefono: 12345678, direccion: 'Karl-Marx-Allee 345 Berlín Alemania'},
+  {id_keeper: 9, nombre: 'Carolina', apellido: 'Hernández', dni: 654321098, telefono: 34567890, direccion: 'Via Veneto 789 Roma Italia'},
+  {id_keeper: 10, nombre: 'Fernando', apellido: 'López', dni: 543210987, telefono: 45678901, direccion: 'Boulevard Saint-Michel 901 París Francia'},
+  {id_keeper: 11, nombre: 'Ana', apellido: 'Sanchez', dni: 876543210, telefono: 87654321, direccion: 'Street One 456 New York Estados Unidos'},
+  {id_keeper: 12, nombre: 'Hugo', apellido: 'Vargas', dni: 321098765, telefono: 67890123, direccion: 'Rua das Flores 345 Lisboa Portugal'},
+  {id_keeper: 13, nombre: 'Diego', apellido: 'Ramírez', dni: 109876543, telefono: 89012345, direccion: 'Via del Corso 567 Roma Italia'},
+  {id_keeper: 14, nombre: 'Javier', apellido: 'Mendoza', dni: 987654321, telefono: 12345678, direccion: 'Calle Libertad 123 Montevideo Uruguay'},
+  {id_keeper: 15, nombre: 'Isabel', apellido: 'López', dni: 876543210, telefono: 87654321, direccion: 'High Street 456 Londres Reino Unido'},
+  {id_keeper: 16, nombre: 'Manuel', apellido: 'Santos', dni: 765432109, telefono: 23456789, direccion: 'Carrera 7 789 Bogotá Colombia'},
+  {id_keeper: 17, nombre: 'Sofía', apellido: 'González', dni: 654321098, telefono: 34567890, direccion: 'Avenida Paulista 901 São Paulo Brasil'},
+  {id_keeper: 18, nombre: 'Alejandro', apellido: 'Vargas', dni: 543210987, telefono: 45678901, direccion: 'Broadway 234 Nueva York Estados Unidos'},
+  {id_keeper: 19, nombre: 'Valentina', apellido: 'Hernández', dni: 98765432, telefono: 90123456, direccion: 'Avenida de Mayo 123 Buenos Aires Argentina'},
+  {id_keeper: 20, nombre: 'Francisco', apellido: 'Pereira', dni: 321098765, telefono: 67890123, direccion: 'Rue du Commerce 567 París Francia'}
+])
+
+db.createCollection("traveler")
+
+db.traveler.insertMany([
+  {id_traveler: 1, nombre: 'Juan', apellido: 'Pérez', dni: 74045678, telefono: 987654321, direccion: 'Jirón Los Pinos 123 Perú'},
+  {id_traveler: 2, nombre: 'María', apellido: 'Gómez', dni: 8765432, telefono: 956789457, direccion: 'Av. Principal 789 Argentina'},
+  {id_traveler: 3, nombre: 'Pedro', apellido: 'López', dni: 5678901, telefono: 987654321, direccion: 'Av. Juárez 459 México'},
+  {id_traveler: 4, nombre: 'Laura', apellido: 'Torres', dni: 3456789, telefono: 986321475, direccion: 'Calle Mayor 456 España'},
+  {id_traveler: 5, nombre: 'Carlos', apellido: 'Sánchez', dni: 9012345, telefono: 987654321, direccion: 'Av. Diagonal 789 España'},
+  {id_traveler: 6, nombre: 'Ana', apellido: 'Martínez', dni: 6234567, telefono: 912345678, direccion: 'Calle Primera 789 México'},
+  {id_traveler: 7, nombre: 'David', apellido: 'González', dni: 2345678, telefono: 923456789, direccion: 'Avenida Central 456 Colombia'},
+  {id_traveler: 8, nombre: 'Sofía', apellido: 'Hernández', dni: 3456789, telefono: 934567890, direccion: 'Rua Principal 789 Brasil'},
+  {id_traveler: 9, nombre: 'Luis', apellido: 'Rodríguez', dni: 4567890, telefono: 945678901, direccion: 'Main Street 456 Estados Unidos'},
+  {id_traveler: 10, nombre: 'Mariana', apellido: 'López', dni: 5678901, telefono: 956789012, direccion: 'Rue Principale 789 Francia'},
+  {id_traveler: 11, nombre: 'Alejandro', apellido: 'Silva', dni: 6789012, telefono: 967890123, direccion: 'Viale Maggiore 456 Italia'},
+  {id_traveler: 12, nombre: 'Carolina', apellido: 'Ríos', dni: 7890123, telefono: 978901234, direccion: 'Hauptstraße 789 Alemania'},
+  {id_traveler: 13, nombre: 'Daniel', apellido: 'Santana', dni: 2233445, telefono: 968945678, direccion: 'Avenida da Liberdade 623 Portugal'},
+  {id_traveler: 50, nombre: 'Valentina', apellido: 'Moreno', dni: 3344556, telefono: 978956789, direccion: 'Regent Street 578 Reino Unido'},
+  {id_traveler: 15, nombre: 'Diego', apellido: 'Santos', dni: 7122334, telefono: 991234567, direccion: 'Avenue Principale 456 Canadá'},
+  {id_traveler: 16, nombre: 'Isabella', apellido: 'Moreno', dni: 2233445, telefono: 992345678, direccion: 'Via Roma 789 Italia'},
+  {id_traveler: 17, nombre: 'Matías', apellido: 'Castillo', dni: 3344556, telefono: 983456789, direccion: 'Boulevard Principal 456 México'},
+  {id_traveler: 18, nombre: 'Camila', apellido: 'Ortega', dni: 4455667, telefono: 994567890, direccion: 'Main Street 789 Estados Unidos'},
+  {id_traveler: 19, nombre: 'Mariana', apellido: 'Gutiérrez', dni: 3344556, telefono: 999456789, direccion: 'Calle del Sol 412 México'},
+  {id_traveler: 20, nombre: 'Alexander', apellido: 'Schmidt', dni: 8899001, telefono: 999901234, direccion: 'Unter den Linden 748 Alemania'}
+])
+
+db.createCollection("RegsitroKeeper")
+
+db.RegsitroKeeper.insertMany([
+   {id_registro: 1, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Mexicano', pasaporte: 'ABC123XYZ', caducidad_pasaporte: new Date('2024-12-31'), redes_sociales: 'https://www.facebook.com/Jhon.quenta', keeper_keeperid: 3},
+  {id_registro: 2, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Española', pasaporte: 'DEF456UVW', caducidad_pasaporte: new Date('2023-10-15'), redes_sociales: 'https://www.instagram.com/Elizabeth.alpes', keeper_keeperid: 5},
+   {id_registro: 3, registro_penales: 'Con antecedentes penales', genero: 'Masculino', nacionalidad: 'Argentino', pasaporte: 'GHI789RST', caducidad_pasaporte: new Date('2025-06-30'), redes_sociales: 'https://www.twitter.com/Bruno.naro', keeper_keeperid: 2},
+  {id_registro: 4, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Peruano', pasaporte: 'JKL012ABC', caducidad_pasaporte: new Date('2024-07-20'), redes_sociales: 'https://www.instagram.com/Ricardo.quispe', keeper_keeperid: 1},
+  {id_registro: 5, registro_penales: 'Con antecedentes penales', genero: 'Masculino', nacionalidad: 'Español', pasaporte: 'MNO345DEF', caducidad_pasaporte: new Date('2023-11-28'), redes_sociales: 'https://www.facebook.com/Ignacio.marique', keeper_keeperid: 4},
+  {id_registro: 6, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Portugués', pasaporte: 'PQR678XYZ', caducidad_pasaporte: new Date('2023-09-30'), redes_sociales: 'https://www.facebook.com/Monica.hernandez', keeper_keeperid: 6},
+  {id_registro: 7, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Brasileño', pasaporte: 'STU901UVW', caducidad_pasaporte: new Date('2022-12-31'), redes_sociales: 'https://www.instagram.com/Andres.gonzalez', keeper_keeperid: 7},
+  {id_registro: 8, registro_penales: 'Con antecedentes penales', genero: 'Femenino', nacionalidad: 'Alemana', pasaporte: 'VWX234RST', caducidad_pasaporte: new Date('2024-05-15'), redes_sociales: 'https://www.twitter.com/Marcela.castillo', keeper_keeperid: 8},
+  {id_registro: 9, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Italiana', pasaporte: 'YZA567ABC', caducidad_pasaporte: new Date('2025-08-20'), redes_sociales: 'https://www.instagram.com/Carolina.hernandez', keeper_keeperid: 9},
+  {id_registro: 10, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Francés', pasaporte: 'BCD890DEF', caducidad_pasaporte: new Date('2023-07-28'), redes_sociales: 'https://www.facebook.com/Fernando.lopez', keeper_keeperid: 10},
+  {id_registro: 11, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Estadounidense', pasaporte: 'EFG012GHI', caducidad_pasaporte: new Date('2024-02-15'), redes_sociales: 'https://www.instagram.com/Ana.sanchez', keeper_keeperid: 11},
+  {id_registro: 12, registro_penales: 'Con antecedentes penales', genero: 'Masculino', nacionalidad: 'Portugués', pasaporte: 'IJK345LMN', caducidad_pasaporte: new Date('2023-06-30'), redes_sociales: 'https://www.twitter.com/Hugo.vargas', keeper_keeperid: 12},
+  {id_registro: 13, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Italiano', pasaporte: 'OPQ678RST', caducidad_pasaporte: new Date('2025-11-20'), redes_sociales: 'https://www.instagram.com/Diego.ramirez', keeper_keeperid: 13},
+  {id_registro: 14, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Uruguayo', pasaporte: 'UVW901XYZ', caducidad_pasaporte: new Date('2024-09-15'), redes_sociales: 'https://www.facebook.com/Javier.mendoza', keeper_keeperid: 14},
+  {id_registro: 15, registro_penales: 'Con antecedentes penales', genero: 'Femenino', nacionalidad: 'Británica', pasaporte: 'XYZ234ABC', caducidad_pasaporte: new Date('2023-12-31'), redes_sociales: 'https://www.instagram.com/Isabel.lopez', keeper_keeperid: 15},
+  {id_registro: 16, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Colombiano', pasaporte: 'ABC567DEF', caducidad_pasaporte: new Date('2025-05-20'), redes_sociales: 'https://www.facebook.com/Manuel.santos', keeper_keeperid: 16},
+  {id_registro: 17, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Brasileña', pasaporte: 'GHI890JKL', caducidad_pasaporte: new Date('2024-10-28'), redes_sociales: 'https://www.instagram.com/Sofia.gonzalez', keeper_keeperid: 17},
+  {id_registro: 18, registro_penales: 'Con antecedentes penales', genero: 'Masculino', nacionalidad: 'Estadounidense', pasaporte: 'MNO123PQR', caducidad_pasaporte: new Date('2023-09-30'), redes_sociales: 'https://www.twitter.com/Alejandro.vargas', keeper_keeperid: 18},
+  {id_registro: 19, registro_penales: 'Sin antecedentes penales', genero: 'Femenino', nacionalidad: 'Argentina', pasaporte: 'STU456VWX', caducidad_pasaporte: new Date('2025-06-20'), redes_sociales: 'https://www.instagram.com/Valentina.hernandez', keeper_keeperid: 19},
+  {id_registro: 20, registro_penales: 'Sin antecedentes penales', genero: 'Masculino', nacionalidad: 'Francés', pasaporte: 'YZA789BCD', caducidad_pasaporte: new Date('2024-11-28'), redes_sociales: 'https://www.facebook.com/Francisco.pereira', keeper_keeperid: 20}
+])
+
+db.createCollection("RegsitroTraveler")
+
+db.RegsitroTraveler.insertMany([
+  {id_registro: 1, tiempoViaje: 10, cantidadViviendas: 2, genero: 'Masculino', nacionalidad: 'Peruano', traveler_travelerid: 1},
+  {id_registro: 2, tiempoViaje: 7, cantidadViviendas: 1, genero: 'Femenino', nacionalidad: 'Argentino', traveler_travelerid: 2},
+  {id_registro: 3, tiempoViaje: 5, cantidadViviendas: 3, genero: 'Masculino', nacionalidad: 'Mexicano', traveler_travelerid: 3},
+  {id_registro: 4, tiempoViaje: 8, cantidadViviendas: 2, genero: 'Femenino', nacionalidad: 'Español', traveler_travelerid: 4},
+  {id_registro: 5, tiempoViaje: 6, cantidadViviendas: 1, genero: 'Masculino', nacionalidad: 'Español', traveler_travelerid: 5},
+  {id_registro: 6, tiempoViaje: 9, cantidadViviendas: 1, genero: 'Femenino', nacionalidad: 'Mexicano', traveler_travelerid: 6},
+  {id_registro: 7, tiempoViaje: 12, cantidadViviendas: 3, genero: 'Masculino', nacionalidad: 'Colombiano', traveler_travelerid: 7},
+  {id_registro: 8, tiempoViaje: 7, cantidadViviendas: 2, genero: 'Femenino', nacionalidad: 'Brasileño', traveler_travelerid: 8},
+  {id_registro: 9, tiempoViaje: 14, cantidadViviendas: 1, genero: 'Masculino', nacionalidad: 'Estadounidense', traveler_travelerid: 9},
+  {id_registro: 10, tiempoViaje: 10, cantidadViviendas: 2, genero: 'Femenino', nacionalidad: 'Francés', traveler_travelerid: 10},
+  {id_registro: 11, tiempoViaje: 7, cantidadViviendas: 1, genero: 'Masculino', nacionalidad: 'Italiano', traveler_travelerid: 11},
+  {id_registro: 12, tiempoViaje: 5, cantidadViviendas: 3, genero: 'Femenino', nacionalidad: 'Alemán', traveler_travelerid: 12},
+  {id_registro: 13, tiempoViaje: 9, cantidadViviendas: 1, genero: 'Masculino', nacionalidad: 'Portugués', traveler_travelerid: 13},
+  {id_registro: 14, tiempoViaje: 6, cantidadViviendas: 2, genero: 'Femenino', nacionalidad: 'Británico', traveler_travelerid: 50},
+  {id_registro: 15, tiempoViaje: 8, cantidadViviendas: 1, genero: 'Masculino', nacionalidad: 'Canadiense', traveler_travelerid: 15},
+  {id_registro: 16, tiempoViaje: 7, cantidadViviendas: 3, genero: 'Femenino', nacionalidad: 'Italiano', traveler_travelerid: 16},
+  {id_registro: 17, tiempoViaje: 5, cantidadViviendas: 2, genero: 'Masculino', nacionalidad: 'Mexicano', traveler_travelerid: 17},
+  {id_registro: 18, tiempoViaje: 9, cantidadViviendas: 1, genero: 'Femenino', nacionalidad: 'Estadounidense', traveler_travelerid: 18},
+  {id_registro: 19, tiempoViaje: 6, cantidadViviendas: 2, genero: 'Masculino', nacionalidad: 'Mexicano', traveler_travelerid: 19},
+  {id_registro: 20, tiempoViaje: 8, cantidadViviendas: 1, genero: 'Femenino', nacionalidad: 'Alemán', traveler_travelerid: 20}
+])
+
+
+db.createCollection("Trato")
+
+db.Trato.insertMany([
+     {
+    id_trato: 1001,
+    requisitos: "Sacar a pasear al perro minimo 10/cortar el cesped",
+    firma: "JaunPerez_ElizabethAlpez"
+  },
+  {
+    id_trato: 2002,
+    requisitos: "limpiar partes usasdas de la casa/no usar el atico/alimentar pajaros de Maria",
+    firma: "MariaGomez_IgnacioManrique"
+  },
+  {
+    id_trato: 3003,
+    requisitos: "No poner la musica alta en la noche/no usar el baño principal",
+    firma: "PedroLopez_BrunoNaro"
+  },
+  {
+    id_trato: 4004,
+    requisitos: "Regar las areas verdes 2 veces al dia",
+    firma: "LauraTorres_JhonQuenta"
+  },
+  {
+    id_trato: 5005,
+    requisitos: "no usar el auto/sacar a pasear al perro de Ricardo/no hacer fiestas en casa",
+    firma: "CarlosSanches_RicardoQuispe"
+  },
+  {
+    id_trato: 6006,
+    requisitos: "limpiar partes usadas de la casa",
+    firma: "AnaMartínez_MónicaHernández"
+  },
+  {
+    id_trato: 7007,
+    requisitos: "No poner la musica alta en la noche",
+    firma: "DavidGonzález_AndrésGonzález"
+  },
+  {
+    id_trato: 8008,
+    requisitos: "no entrar al cuarto piso",
+    firma: "SofíaHernández_MarcelaCastillo"
+  },
+  {
+    id_trato: 9009,
+    requisitos: "regar todas las mañanas el cesped/no usar el innodoro del 2do piso",
+    firma: "LuisRodríguez_CarolinaHernánde"
+  },
+  {
+    id_trato: 1010,
+    requisitos: "limpiar el piso una vez a la semana/pasear al perro al parque",
+    firma: "MarianaLópez_FernandoLópez"
+  },
+  {
+    id_trato: 1111,
+    requisitos: "no subas al tercer piso ,no alimentes al perro mas de tres veces al dia",
+    firma: "AlejandroSilva_AnaSanchez"
+  },
+  {
+    id_trato: 1212,
+    requisitos: "limpiar la cocina si se usa",
+    firma: "CarolinaRíos_HugoVargas"
+  },
+  {
+    id_trato: 1313,
+    requisitos: "no hablar con el loro",
+    firma: "DanielSantana_DiegoRamírez"
+  },
+  {
+    id_trato: 1414,
+    requisitos: "apagar todas las luces despues de media noche",
+    firma: "ValentinaMoreno_JavierMendoza"
+  },
+  {
+    id_trato: 1515,
+    requisitos: "no tocar la computadora del segundo piso",
+    firma: "DiegoSantos_IsabelLópez"
+  },
+  {
+    id_trato: 1616,
+    requisitos: "no invitar a nadie a la casa sin autorizacion previa",
+    firma: "IsabellaMoreno_ManuelSantos"
+  },
+  {
+    id_trato: 1717,
+    requisitos: "limpiar la casa del perro dos veces por semana",
+    firma: "MatíasCastillo_SofíaGonzález"
+  },
+  {
+    id_trato: 1818,
+    requisitos: "no usar la piscina del patio",
+    firma: "CamilaOrtega_AlejandroVargas"
+  },
+  {
+    id_trato: 1919,
+    requisitos: "barrer el segundo piso diario",
+    firma: "MarianaGutiérrez_ValentinaHernández"
+  },
+  {
+    id_trato: 2020,
+    requisitos: "no pedir a domicilio",
+    firma: "AlexanderSchmidt_FranciscoPereira"
+  }
+])
+
+db.createCollection("Reserva")
+
+db.Reserva.insertMany([
+    {
+    id_reserva: 1,
+    fecha: "2023-06-01",
+    hora: "10:00:00",
+    trato_id_trato: 1001
+  },
+  {
+    id_reserva: 2,
+    fecha: "2023-06-02",
+    hora: "14:30:00",
+    trato_id_trato: 2002
+  },
+  {
+    id_reserva: 3,
+    fecha: "2023-06-03",
+    hora: "09:45:00",
+    trato_id_trato: 3003
+  },
+  {
+    id_reserva: 4,
+    fecha: "2023-06-04",
+    hora: "16:15:00",
+    trato_id_trato: 4004
+  },
+  {
+    id_reserva: 5,
+    fecha: "2023-06-29",
+    hora: "12:00:00",
+    trato_id_trato: 5005
+  },
+  {
+    id_reserva: 6,
+    fecha: "2024-07-28",
+    hora: "13:15:00",
+    trato_id_trato: 6006
+  },
+  {
+    id_reserva: 7,
+    fecha: "2024-07-25",
+    hora: "16:30:00",
+    trato_id_trato: 7007
+  },
+  {
+    id_reserva: 8,
+    fecha: "2024-07-14",
+    hora: "18:00:00",
+    trato_id_trato: 8008
+  },
+  {
+    id_reserva: 9,
+    fecha: "2024-07-13",
+    hora: "19:10:00",
+    trato_id_trato: 9009
+  },
+  {
+    id_reserva: 10,
+    fecha: "2024-07-17",
+    hora: "20:00:00",
+    trato_id_trato: 1010
+  },
+  {
+    id_reserva: 11,
+    fecha: "2025-09-18",
+    hora: "21:30:00",
+    trato_id_trato: 1111
+  },
+  {
+    id_reserva: 12,
+    fecha: "2025-09-20",
+    hora: "17:15:00",
+    trato_id_trato: 1212
+  },
+  {
+    id_reserva: 13,
+    fecha: "2025-09-25",
+    hora: "14:00:00",
+    trato_id_trato: 1313
+  },
+  {
+    id_reserva: 14,
+    fecha: "2025-09-3",
+    hora: "12:00:00",
+    trato_id_trato: 1414
+  },
+  {
+    id_reserva: 15,
+    fecha: "2025-09-1",
+    hora: "9:30:00",
+    trato_id_trato: 1515
+  },
+  {
+    id_reserva: 16,
+    fecha: "2023-12-15",
+    hora: "10:00:00",
+    trato_id_trato: 1616
+  },
+  {
+    id_reserva: 17,
+    fecha: "2023-12-05",
+    hora: "12:00:00",
+    trato_id_trato: 1717
+  },
+  {
+    id_reserva: 18,
+    fecha: "2023-12-20",
+    hora: "12:00:00",
+    trato_id_trato: 1818
+  },
+  {
+    id_reserva: 19,
+    fecha: "2023-12-7",
+    hora: "12:00:00",
+    trato_id_trato: 1919
+  },
+  {
+    id_reserva: 20,
+    fecha: "2023-06-05",
+    hora: "12:00:00",
+    trato_id_trato: 2020
+  }
+])
+
+//Consultas MongoDB
+
+//Christian Zeta
+//mostrar todas las viviendas en new york
+db.viviendas.find({ciudad:'New York'},{_id:0, areas_verdes:0,cant_mascotas:0,cant_pisos:0})
+//cantidad de viviendas en Ciudad de mexico
+db.viviendas.find({ciudad:'Ciudad de Mexico'}).count()
+//Mostrar los nombres de los distintos paises
+db.viviendas.distinct("pais")
+//Mostrar el nombre y dni del keeper
+db.keeper.aggregate([
+    {
+        $group: {
+            _id: '$nombre',
+            dni: { $first: '$dni' }
+        }
+    }
+])
+
+
+//Anthony
+
+//mostrar la las viviendas con 5 pisos
+db.viviendas.find({cant_pisos:5},{_id:0, areas_verdes:0,cant_mascotas:0})
+
+//Mostrar el codigo y la firma
+
+db.Trato.aggregate([
+  {
+    $project: {
+      _id: 0,
+      codigo: "$id_trato",
+      firma: "$firma"
+    }
+  }
+]);
+
+//Jhan Antonio Salazar
+
+  //Obtener todos los keepers cuyo apellido comienza con la letra "M" y viven en México.
+db.keeper.find({ "apellido": { $regex: /^M/ }, "direccion": { $regex: /Uruguay$/ } }, {_id:0})
+//Obtener los viajeros ordenados por fecha de registro de manera descendente.
+db.traveler.find().sort({ fechaRegistro: -1 },{_id:0})
+// Obtener la cantidad total de viajeros por género.
+
+
+
+//Edwar
+//Mostrar los registros de viajeros de nacionalidad mexicana:
+db.RegsitroTraveler.find({nacionalidad:"Mexicano"}, {_id:0,tiempoViaje:1,cantidadViviendas:1,genero:1,nacionalidad:1,traveler_travelerid:1})
+
+//Mostrar los registros de viajeros con tiempo de viaje mayor a 7:
+db.RegsitroTraveler.find({tiempoViaje:{$gt:7}}, {_id:0,tiempoViaje:1,cantidadViviendas:1,genero:1,nacionalidad:1,traveler_travelerid:1})
+
+
+
+
+
+
+
+//Alex
+//mostrar la cantidad de viviendas de Argentina
+db.viviendas.countDocuments({pais: 'Argentina'})
+
+//Obtener todos los traveler cuyo nombre comienza con la letra "D".
+db.traveler.find({ "nombre": { $regex: /^D/ } }, {_id:0})
