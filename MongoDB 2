@@ -1,0 +1,157 @@
+use HouseKeeper
+
+db.createCollection("keepers", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["id_keeper", "nombre", "apellido", "dni", "telefono", "direccion"],
+      properties: {
+        id_keeper: {
+          bsonType: "int",
+          description: "El ID del keeper"
+        },
+        nombre: {
+          bsonType: "string",
+          description: "El nombre del keeper"
+        },
+        apellido: {
+          bsonType: "string",
+          description: "El apellido del keeper"
+        },
+        dni: {
+          bsonType: "int",
+          description: "El DNI del keeper"
+        },
+        telefono: {
+          bsonType: "int",
+          description: "El teléfono del keeper"
+        },
+        direccion: {
+          bsonType: "string",
+          description: "La dirección del keeper"
+        }
+      }
+    }
+  }
+})
+
+
+
+db.createCollection("viviendas",{
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["id_viviendas", "ciudad", "pais", "direccion", "cant_pisos", "cant_mascotas", "areas_verdes"],
+      properties: {
+        id_viviendas: {
+          bsonType: "int",
+          description: "El ID de las viviendas"
+        },
+        ciudad: {
+          bsonType: "string",
+          description: "La ciudad de las viviendas"
+        },
+        pais: {
+          bsonType: "string",
+          description: "El país de las viviendas"
+        },
+        direccion: {
+          bsonType: "string",
+          description: "La dirección de las viviendas"
+        },
+        cant_pisos: {
+          bsonType: "int",
+          description: "La cantidad de pisos en las viviendas"
+        },
+        cant_mascotas: {
+          bsonType: "int",
+          description: "La cantidad de mascotas permitidas en las viviendas"
+        },
+        areas_verdes: {
+          bsonType: "bool",
+          description: "Indica si hay áreas verdes en las viviendas"
+        }
+      }
+    }
+  }
+})
+
+
+db.createCollection("travelers", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["id_traveler", "nombre", "apellido", "dni", "telefono", "direccion"],
+      properties: {
+        id_traveler: {
+          bsonType: "int",
+          description: "El ID del traveler"
+        },
+        nombre: {
+          bsonType: "string",
+          description: "El nombre del traveler"
+        },
+        apellido: {
+          bsonType: "string",
+          description: "El apellido del traveler"
+        },
+        dni: {
+          bsonType: "int",
+          description: "El DNI del traveler"
+        },
+        telefono: {
+          bsonType: "int",
+          description: "El teléfono del traveler"
+        },
+        direccion: {
+          bsonType: "string",
+          description: "La dirección del traveler"
+        }
+      }
+    }
+  }
+})
+
+
+
+
+db.createCollection("usuarios",{
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["codigo", "nombre", "apellido", "telefono", "direccion", "dni"],
+      properties: {
+        codigo: {
+          bsonType: "int",
+          description: "El código del usuario"
+        },
+        nombre: {
+          bsonType: "string",
+          description: "El nombre del usuario"
+        },
+        apellido: {
+          bsonType: "string",
+          description: "El apellido del usuario"
+        },
+        telefono: {
+          bsonType: "int",
+          description: "El teléfono del usuario"
+        },
+        direccion: {
+          bsonType: "string",
+          description: "La dirección del usuario"
+        },
+        dni: {
+          bsonType: "int",
+          description: "El DNI del usuario"
+        }
+      }
+    }
+  }
+})
+
+
+
+
+
+
