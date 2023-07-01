@@ -1,0 +1,39 @@
+--Diseñar la función o procedimiento almacenado que permita determinar el nombre del Keeper con su genero, nacionalidad y redes sociales.(CHRISTIAN)
+
+CREATE FUNCTION obtener_info_keeper()
+RETURNS TABLE
+AS RETURN
+    SELECT k.nombre, rk.genero, rk.nacionalidad, rk.redes_sociales
+    FROM keeper k
+    JOIN Registro_Kepper rk ON k.id_keeper = rk.keeper_keeperid;
+
+go;
+
+SELECT * FROM obtener_info_keeper();
+go;
+
+--Diseñar la función o procedimiento almacenado que permita mostar la fecha de reserva ,la firma y el requisito del trato.(CHRISTIAN)
+CREATE FUNCTION obtener_info_trato(@Year int)
+RETURNS TABLE
+AS RETURN
+    SELECT r.fecha, t.firma, t.requisitos
+    FROM reserva r
+    JOIN trato t ON r.trato_id_trato = t.id_trato
+    WHERE YEAR(r.fecha) = @Year;
+go;
+
+SELECT * FROM dbo.obtener_info_trato(2024);
+go;
+
+--Diseñar la función o procedimiento almacenado que permita mostar el nombre del Keeper con su nacionalidad,pasaporte y caducidad del pasaporte .(CHRISTIAN)
+CREATE FUNCTION obtener_info_KeeperViaje()
+RETURNS TABLE
+AS RETURN
+    SELECT K.nombre, rk.nacionalidad as Nacionalidad, rk.pasaporte as Pasaporte
+    FROM keeper K
+    JOIN Registro_Kepper rk ON rk.id_registro = k.id_keeper
+go;
+
+SELECT * FROM dbo.obtener_info_KeeperViaje();
+go;
+
