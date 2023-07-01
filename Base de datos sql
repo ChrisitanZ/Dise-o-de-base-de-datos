@@ -1,0 +1,354 @@
+create database HousseKeeper
+
+use HousseKeeper
+
+create table usuario(
+
+codigo int not null,
+nombre varchar(20) not null,
+apellido varchar(20) not null,
+telefono int not null,
+direccion varchar(50) not null ,
+dni int not null,
+constraint usuario_pk primary key(codigo)
+
+)
+
+
+create table keeper(
+id_keeper int not null,
+nombre varchar(20)not null,
+apellido varchar(20)not null,
+dni int not null,
+telefono int not null,
+direccion varchar(50) not null,
+constraint keeper_pk primary key(id_keeper)
+)
+
+
+create table viviendas(
+id_viviendas int not null,
+ciudad varchar(20) not null,
+pais varchar(20) not null,
+direccion varchar(50) not null,
+cant_pisos int not null,
+cant_mascotas int not null,
+areas_verdes bit not null,
+constraint viviendas_pk primary key(id_viviendas)
+)
+
+
+create table traveler(
+
+id_traveler int not null,
+nombre varchar(20),
+apellido varchar(20),
+dni int,
+telefono int,
+direccion varchar(50)
+
+constraint traveler_pk primary key(id_traveler)
+)
+
+
+create table vivienda_traveler
+(
+viviendas_id_viviendas int not null constraint fk_viviendas foreign key references viviendas(id_viviendas),
+traveler_id_traveler int not null constraint fk_traveler foreign key references traveler(id_traveler),
+constraint viviendatraveler_pk primary key(viviendas_id_viviendas,traveler_id_traveler)
+
+)
+
+create table trato_keepers_travelers(
+traveler_idtravelers int not null constraint fk_travelers foreign key references traveler(id_traveler),
+keeper_id_keepers int not null constraint fk_keepers foreign key references keeper(id_keeper),
+constraint trato_pk primary key(keeper_id_keepers,traveler_idtravelers)
+)
+
+
+
+create table trato(
+id_trato int not null ,
+requisitos varchar(100),
+firma varchar(50),
+constraint tratofinal_pk primary key(id_trato)
+)
+
+create table reserva(
+id_reserva int not null ,
+fecha date not null,
+hora time not null,
+trato_id_trato int  not null constraint fk_trato foreign key references trato(id_trato),
+constraint reserva_pk primary key(id_reserva,trato_id_trato)
+)
+
+
+create table registro_traveler(
+
+id_registro int  not null,
+tiempoViaje int not null,
+cantidadViviendas int not null,
+genero varchar(20) not null,
+nacionalidad varchar(20) not null,
+traveler_travelerid int not null constraint fk_travelerid foreign key references traveler(id_traveler),
+constraint registroT_pk primary key(id_registro,traveler_travelerid)
+
+)
+
+create table Registro_Kepper(
+
+id_registro int not null,
+registro_penales varchar(100) not null,
+genero varchar(20) not null,
+nacionalidad varchar(20) not null,
+pasaporte varchar(100) not null,
+caducidad_pasaporte date not null,
+redes_sociales varchar(100) not null,
+keeper_keeperid int not null constraint fk_keeper foreign key references keeper(id_keeper),
+constraint registroK_pk primary key(id_registro,keeper_keeperid)
+
+)	
+
+
+
+
+
+insert into viviendas(id_viviendas,ciudad,pais,direccion,cant_pisos,cant_mascotas,areas_verdes)
+values
+--Keeper
+        (1, 'Lima','Peru','San miguel Lote 2 manzana B3',3,1,0),
+		(2, 'Buenos Aires','Argentina','Avenida Rivadavia 1234',2,2,1),
+		(3, 'Ciudad de Mexico','Mexico','Calle Juarez 123 colonia central',1,3,1),
+		(4, 'Madrid','España','Calle Gran Vía 28013',4,0,0),
+		(5, 'Barcelona','España','Calle Rambla de Catalunya 08008',5,4,1),
+
+		(11,'Lisboa','Portugal','Rua Principal 678',3,1,0),
+		(12,'São Paulo','Brasil','Av. Paulista 890',1,2,0),
+		(13,'Berlín','Alemania','Karl-Marx-Allee 345',2,3,0),
+		(14,'Roma','Italia','Via Veneto 789',4,1,1),
+		(15,'París','Francia','Boulevard Saint-Michel 901',2,3,1),
+		(16,'New York','Estados Unidos','Street One 456',1,0,0),
+		(17,'Lisboa','Portugal','Rua das Flores 345',2,0,1),
+		(18,'Roma','Italia','Via del Corso 567',3,1,0),
+
+		(19,'Montevideo','Uruguay','Calle Libertad 123',2,3,1),
+		(20,'Londres','Reino Unido','Via del Corso 567',4,1,0),
+		(21,'Bogota','Colombia','Via del Corso 567',2,2,0),
+		(22,'São Paulo','Brasil','Avenida Paulista 901',3,3,0),
+		(23,'Nueva York','Estados Unidos','Broadway 234',1,1,1),
+		(24,'Buenos Aires','Argentina','Avenida de Mayo 123',2,1,1),
+		(25,'París','Francia','Rue du Commerce 567',3,1,1),
+
+		---Traveler
+
+		(6, 'Lima','Peru','Jirón Los Pinos 123',2,4,1),
+		(7, 'Buenos Aires','Argentina','Av. Principal 789',1,2,1),
+		(8, 'Ciudad de Mexico','Mexico','Av. Juárez 459',3,0,1),
+		(9, 'Madrid','España','Calle Mayor 456',4,4,1),
+		(10, 'Barcelona','España','Av. Diagonal 789',5,0,1),
+
+		(26,'Ciudad de Mexico','Mexico','Calle Primera 789',1,1,1),
+		(27,'Bogota','Colombia','Avenida Central 456',2,1,0),
+		(28,'São Paulo','Brasil','Rua Principal 789',4,2,1),
+		(29,'Nueva York','Estados Unidos','Main Street 456',3,1,1),
+		(30,'París','Francia','Rue Principale 789',2,3,0),
+
+		(31,'Roma','Italia','Viale Maggiore 456',2,2,0),
+		(32,'Berlín ','Alemania','Hauptstraße 789 ',2,1,1),
+		(33,'Lisboa','Portugal','Main Street 456',1,0,0),
+		(34,'Londres','Reino Unido','Regent Street 578',3,1,1),
+		(35,'Ontario','Canadá','Avenue Principale 456',2,0,0),
+
+		(36,'Roma','Italia','Via Roma 789',3,1,1),
+		(37,'Ciudad de Mexico','Mexico','Boulevard Principal 456',1,2,0),
+		(38,'Nueva York','Estados Unidos','Main Street 789',2,0,1),
+		(39,'Ciudad de Mexico','Mexico','Calle del Sol 412',1,1,0),
+		(40,'Berlín','Alemania','Unter den Linden 748 ',3,0,1)
+
+insert into keeper(id_keeper,nombre,apellido,dni,telefono,direccion)
+values	(1, 'Ricardo','Quispe',97851514,04817524,'San miguel Lote 2 manzana B3 Perú'),
+		(2, 'Bruno','Naro',941524448,48115249,'Avenida Rivadavia 1234 Argentina'),
+		(3, 'Jhon','Quenta',985152236,781562624,'Calle Juarez 123 colonia central México'),
+		(4, 'Ignacio','Manrique',915144742,714785496,'Calle Gran Vía 28013 España'),
+		(5, 'Elizabeth','Alpes',963652658,974857145,'Calle Rambla de Catalunya 08008 España'),
+
+		(6, 'Mónica', 'Hernández', 210987654, 78901234, 'Rua Principal 678, Lisboa, Portugal'),
+		(7, 'Andrés', 'González', 109876543, 89012345, 'Av. Paulista 890, São Paulo, Brasil'),
+		(8, 'Marcela', 'Castillo', 876543210, 12345678, 'Karl-Marx-Allee 345, Berlín, Alemania'),
+		(9, 'Carolina', 'Hernández', 654321098, 34567890, 'Via Veneto 789, Roma, Italia'),
+		(10, 'Fernando', 'López', 543210987, 45678901, 'Boulevard Saint-Michel 901, París, Francia'),
+		(11, 'Ana', 'Sanchez', 876543210, 87654321, 'Street One 456, New York, Estados Unidos'),
+		(12, 'Hugo', 'Vargas', 321098765, 67890123, 'Rua das Flores 345, Lisboa, Portugal'),
+		(13, 'Diego', 'Ramírez', 109876543, 89012345, 'Via del Corso 567, Roma, Italia'),
+
+		(14, 'Javier', 'Mendoza', 987654321, 12345678, 'Calle Libertad 123, Montevideo, Uruguay'),
+		(15, 'Isabel', 'López', 876543210, 87654321, 'High Street 456, Londres, Reino Unido'),
+		(16, 'Manuel', 'Santos', 765432109, 23456789, 'Carrera 7 789, Bogotá, Colombia'),
+		(17, 'Sofía', 'González', 654321098, 34567890, 'Avenida Paulista 901, São Paulo, Brasil'),
+		(18, 'Alejandro', 'Vargas', 543210987, 45678901, 'Broadway 234, Nueva York, Estados Unidos'),
+		(19, 'Valentina', 'Hernández', 098765432, 90123456, 'Avenida de Mayo 123, Buenos Aires, Argentina'),
+		(20, 'Francisco', 'Pereira', 321098765, 67890123, 'Rue du Commerce 567, París, Francia')
+
+
+
+
+
+insert into traveler(id_traveler,nombre,apellido,dni,telefono,direccion)
+values	(1, 'Juan', 'Pérez', 74045678, 987654321, 'Jirón Los Pinos 123 Perú'),
+		(2, 'María', 'Gómez', 8765432, 956789457,  'Av. Principal 789 Argentina'),
+		(3, 'Pedro', 'López', 5678901, 987654321, 'Av. Juárez 459_México'),
+		(4, 'Laura', 'Torres', 3456789, 986321475, 'Calle Mayor 456 España'),
+		(5, 'Carlos', 'Sánchez', 9012345, 987654321, 'Av. Diagonal 789 España'),
+
+		(6, 'Ana', 'Martínez', 6234567, 912345678, 'Calle Primera 789 México'),
+		(7, 'David', 'González', 2345678, 923456789, 'Avenida Central 456 Colombia'),
+		(8, 'Sofía', 'Hernández', 3456789, 934567890, 'Rua Principal 789 Brasil'),
+		(9, 'Luis', 'Rodríguez', 4567890, 945678901, 'Main Street 456 Estados Unidos'),
+		(10, 'Mariana', 'López', 5678901, 956789012, 'Rue Principale 789 Francia'),
+		(11, 'Alejandro', 'Silva', 6789012, 967890123, 'Viale Maggiore 456 Italia'),
+		(12, 'Carolina', 'Ríos', 7890123, 978901234, 'Hauptstraße 789 Alemania'),
+		(13, 'Daniel', 'Santana', 2233445, 968945678, 'Avenida da Liberdade 623 Portugal'),
+		(50, 'Valentina', 'Moreno', 3344556, 978956789, 'Regent Street 578 Reino Unido'),
+		(15, 'Diego', 'Santos', 7122334, 991234567, 'Avenue Principale 456 Canadá'),
+		(16, 'Isabella', 'Moreno', 2233445, 992345678, 'Via Roma 789 Italia'),
+		(17, 'Matías', 'Castillo', 3344556, 983456789, 'Boulevard Principal 456 México'),
+		(18, 'Camila', 'Ortega', 4455667, 994567890, 'Main Street 789 Estados Unidos'),
+		(19, 'Mariana', 'Gutiérrez', 3344556, 999456789, 'Calle del Sol 412 México'),
+		(20, 'Alexander', 'Schmidt', 8899001, 999901234, 'Unter den Linden 748 Alemania')
+
+
+insert into usuario(codigo,nombre,apellido,telefono,direccion,dni)
+values  
+        ---traveler--
+        (1234,'Juan', 'Pérez',987654321,'Jirón Los Pinos 123',74045678),
+        (2130,'María', 'Gómez',956789457,'Av. Principal 789',87654321),
+		(3576,'Pedro', 'López',987654321,'Av. Juárez 459', 56789012),
+		(4891,'Laura', 'Torres', 986321475,'Calle Mayor 456',34567890),
+		(5674,'Carlos', 'Sánchez',987654321,'Av. Diagonal 789',90123456),
+		(6002, 'Ana', 'Martínez', 912345678, 'Calle Primera 789', 62345678),
+        (7003, 'David', 'González', 923456789, 'Avenida Central 456', 23456789),
+        (8004, 'Sofía', 'Hernández', 934567890, 'Rua Principal 789', 34567890),
+        (9001, 'Luis', 'Rodríguez', 945678901, 'Main Street 456', 45678901),
+        (1033, 'Mariana', 'López', 956789012, 'Rue Principale 789', 56789012),
+        (1145, 'Alejandro', 'Silva', 967890123, 'Viale Maggiore 456', 67890123),
+        (1267, 'Carolina', 'Ríos', 978901234, 'Hauptstraße 789', 78901234),
+        (1306, 'Daniel', 'Santana', 968945678, 'Avenida da Liberdade 623', 22334455),
+        (1499, 'Valentina', 'Moreno', 978956789, 'Regent Street 578', 33445566),
+        (1582, 'Diego', 'Santos', 991234567, 'Avenue Principale 456', 71223344),
+        (1623, 'Isabella', 'Moreno', 992345678, 'Via Roma 789', 22334455),
+        (1776, 'Matías', 'Castillo', 983456789, 'Boulevard Principal 456', 33445566),
+        (1823, 'Camila', 'Ortega', 994567890, 'Main Street 789', 44556677),
+        (1932, 'Mariana', 'Gutiérrez', 999456789, 'Calle del Sol 412', 33445566),
+        (2016, 'Alexander', 'Schmidt', 999901234, 'Unter den Linden 748', 88990011),
+
+        --keeper--
+		(6001,'Ricardo','Quispe',04817524,'San miguel Lote 2 manzana B3',97851514),
+		(7534,'Bruno','Naro',48115249,'Avenida Rivadavia 1234',94152444),
+		(8529,'Jhon','Quenta',781562624,'Calle Juarez 123 colonia central',98515223),
+		(9513,'Ignacio','Manrique',714785496,'Calle Gran Vía 28013',91514474),
+		(10152,'Elizabeth','Alpes',974857145,'Calle Rambla de Catalunya 08008',96365265),
+		(6321, 'Mónica', 'Hernández', 78901234, 'Rua Principal 678, Lisboa, Portugal', 21098765),
+		(7568, 'Andrés', 'González',89012345, 'Av. Paulista 890, São Paulo, Brasil', 10987654),
+		(8921, 'Marcela', 'Castillo', 12345678, 'Karl-Marx-Allee 345, Berlín, Alemania', 87654321),
+		(9761, 'Carolina', 'Hernández', 34567890, 'Via Veneto 789, Roma, Italia', 65432109),
+		(1078, 'Fernando', 'López', 45678901, 'Boulevard Saint-Michel 901, París, Francia', 54321098),
+		(1124, 'Ana', 'Sanchez', 87654321, 'Street One 456, New York, Estados Unidos',87654321),
+		(1232, 'Hugo', 'Vargas',67890123,'Rua das Flores 345, Lisboa, Portugal',32109876),
+		(1356, 'Diego', 'Ramírez', 89012345, 'Via del Corso 567, Roma, Italia',10987654),
+		(1497, 'Javier', 'Mendoza',12345678, 'Calle Libertad 123, Montevideo, Uruguay', 98765432),
+		(1576, 'Isabel', 'López', 876543210, 'High Street 456, Londres, Reino Unido', 87654321),
+		(1683, 'Manuel', 'Santos', 23456789, 'Carrera 7 789, Bogotá, Colombia', 76543210),
+		(1753, 'Sofía', 'González', 34567890, 'Avenida Paulista 901, São Paulo, Brasil',65432109),
+		(1843, 'Alejandro', 'Vargas', 45678901, 'Broadway 234, Nueva York, Estados Unidos', 54321098),
+		(1968, 'Valentina', 'Hernández', 90123456, 'Avenida de Mayo 123, Buenos Aires, Argentina',09876543),
+		(2056, 'Francisco', 'Pereira', 67890123, 'Rue du Commerce 567, París, Francia', 32109876);
+
+insert into trato(id_trato,requisitos,firma)
+values	(1001, 'Sacar a pasear al perro minimo 10/cortar el cesped','JaunPerez_ElizabethAlpez'),
+		(2002, 'limpiar partes usasdas de la casa/no usar el atico/alimentar pajaros de Maria','MariaGomez_IgnacioManrique'),
+		(3003, 'No poner la musica alta en la noche/no usar el baño principal','PedroLopez_BrunoNaro'),
+		(4004, 'Regar las areas verdes 2 veces al dia','LauraTorres_JhonQuenta'),
+		(5005, 'no usar el auto/sacar a pasear al perro de Ricardo/no hacer fiestas en casa','CarlosSanches_RicardoQuispe'),
+		(6006, 'limpiar partes usadas de la casa','AnaMartínez_MónicaHernández'),
+		(7007, 'No poner la musica alta en la noche','DavidGonzález_AndrésGonzález'),
+		(8008,'no entrar al cuarto piso','SofíaHernández_MarcelaCastillo'),
+		(9009,'regar todas las mañanas el cesped/no usar el innodoro del 2do piso','LuisRodríguez_CarolinaHernánde'),
+		(1010,'limpiar el piso una vez a la semana/pasear al perro al parque','MarianaLópez_FernandoLópez'),
+		(1111,'no subas al tercer piso ,no alimentes al perro mas de tres veces al dia','AlejandroSilva_AnaSanchez'),
+		(1212,'limpiar la cocina si se usa','CarolinaRíos_HugoVargas'),
+		(1313,'no hablar con el loro','DanielSantana_DiegoRamírez'),
+		(1414,'apagar todas las luces despues de media noche','ValentinaMoreno_JavierMendoza'),
+		(1515,'no tocar la computadora del segundo piso','DiegoSantos_IsabelLópez'),
+		(1616,'no invitar a nadie a la casa sin autorizacion previa','IsabellaMoreno_ManuelSantos'),
+		(1717,'limpiar la casa del perro dos veces por semana','MatíasCastillo_SofíaGonzález'),
+		(1818,'no usar la piscina del patio','CamilaOrtega_AlejandroVargas'),
+		(1919,'barrer el segundo piso diario','MarianaGutiérrez_ValentinaHernández'),
+		(2020,'no pedir a domicilio','AlexanderSchmidt_FranciscoPereira');
+insert into reserva(id_reserva,fecha,hora,trato_id_trato)
+values	(1, '2023-06-01','10:00:00',1001),
+		(2, '2023-06-02', '14:30:00', 2002),
+		(3, '2023-06-03', '09:45:00', 3003),
+		(4, '2023-06-04', '16:15:00', 4004),
+		(5, '2023-06-29', '12:00:00', 5005),
+		(6, '2024-07-28', '13:15:00', 6006),
+		(7, '2024-07-25', '16:30:00', 7007),
+		(8, '2024-07-14', '18:00:00', 8008),
+		(9, '2024-07-13', '19:10:00', 9009),
+		(10, '2024-07-17', '20:00:00', 1010),
+		(11, '2025-09-18', '21:30:00', 1111),
+		(12, '2025-09-20', '17:15:00', 1212),
+		(13, '2025-09-25', '14:00:00', 1313),
+		(14, '2025-09-3', '12:00:00', 1414),
+		(15, '2025-09-1', '9:30:00', 1515),
+		(16, '2023-12-15', '10:00:00', 1616),
+		(17, '2023-12-05', '12:00:00', 1717),
+		(18, '2023-12-20', '12:00:00', 1818),
+		(19, '2023-12-7', '12:00:00', 1919),
+		(20, '2023-06-05', '12:00:00', 2020);
+
+INSERT INTO Registro_Kepper (id_registro, registro_penales, genero, nacionalidad, pasaporte, caducidad_pasaporte, redes_sociales, keeper_keeperid)
+VALUES
+  (1, 'Sin antecedentes penales', 'Masculino', 'Mexicano', 'ABC123XYZ', '2024-12-31', 'https://www.facebook.com/Jhon.quenta', 3),
+  (2, 'Sin antecedentes penales', 'Femenino', 'Española', 'DEF456UVW', '2023-10-15', 'https://www.instagram.com/Elizabeth.alpes', 5),
+  (3, 'Con antecedentes penales', 'Masculino', 'Argentino', 'GHI789RST', '2025-06-30', 'https://www.twitter.com/Bruno.naro', 2),
+  (4, 'Sin antecedentes penales', 'Masculino', 'Peruano', 'JKL012ABC', '2024-07-20', 'https://www.instagram.com/Ricardo.quispe', 1),
+  (5, 'Con antecedentes penales', 'Masculino', 'Español', 'MNO345DEF', '2023-11-28', 'https://www.facebook.com/Ignacio.marique', 4),
+  (6, 'Sin antecedentes penales', 'Femenino', 'Portugués', 'PQR678XYZ', '2023-09-30', 'https://www.facebook.com/Monica.hernandez', 6),
+  (7, 'Sin antecedentes penales', 'Masculino', 'Brasileño', 'STU901UVW', '2022-12-31', 'https://www.instagram.com/Andres.gonzalez', 7),
+  (8, 'Con antecedentes penales', 'Femenino', 'Alemana', 'VWX234RST', '2024-05-15', 'https://www.twitter.com/Marcela.castillo', 8),
+  (9, 'Sin antecedentes penales', 'Femenino', 'Italiana', 'YZA567ABC', '2025-08-20', 'https://www.instagram.com/Carolina.hernandez', 9),
+  (10, 'Sin antecedentes penales', 'Masculino', 'Francés', 'BCD890DEF', '2023-07-28', 'https://www.facebook.com/Fernando.lopez', 10),
+  (11, 'Sin antecedentes penales', 'Femenino', 'Estadounidense', 'EFG012GHI', '2024-02-15', 'https://www.instagram.com/Ana.sanchez', 11),
+  (12, 'Con antecedentes penales', 'Masculino', 'Portugués', 'IJK345LMN', '2023-06-30', 'https://www.twitter.com/Hugo.vargas', 12),
+  (13, 'Sin antecedentes penales', 'Masculino', 'Italiano', 'OPQ678RST', '2025-11-20', 'https://www.instagram.com/Diego.ramirez', 13),
+  (14, 'Sin antecedentes penales', 'Masculino', 'Uruguayo', 'UVW901XYZ', '2024-09-15', 'https://www.facebook.com/Javier.mendoza', 14),
+  (15, 'Con antecedentes penales', 'Femenino', 'Británica', 'XYZ234ABC', '2023-12-31', 'https://www.instagram.com/Isabel.lopez', 15),
+  (16, 'Sin antecedentes penales', 'Masculino', 'Colombiano', 'ABC567DEF', '2025-05-20', 'https://www.facebook.com/Manuel.santos', 16),
+  (17, 'Sin antecedentes penales', 'Femenino', 'Brasileña', 'GHI890JKL', '2024-10-28', 'https://www.instagram.com/Sofia.gonzalez', 17),
+  (18, 'Con antecedentes penales', 'Masculino', 'Estadounidense', 'MNO123PQR', '2023-09-30', 'https://www.twitter.com/Alejandro.vargas', 18),
+  (19, 'Sin antecedentes penales', 'Femenino', 'Argentina', 'STU456VWX', '2025-06-20', 'https://www.instagram.com/Valentina.hernandez', 19),
+  (20, 'Sin antecedentes penales', 'Masculino', 'Francés', 'YZA789BCD', '2024-11-28', 'https://www.facebook.com/Francisco.pereira', 20);
+
+
+
+INSERT INTO registro_traveler (id_registro, tiempoViaje, cantidadViviendas, genero, nacionalidad, traveler_travelerid)
+VALUES (1, 10, 2, 'Masculino', 'Peruano', 1),
+       (2, 7, 1, 'Femenino', 'Argentino', 2),
+	   (3, 5, 3, 'Masculino', 'Mexicano', 3),
+	   (4, 8, 2, 'Femenino', 'Español', 4),
+	   (5, 6, 1, 'Masculino', 'Español', 5),
+	   (6, 9, 1, 'Femenino', 'Mexicano', 6),
+       (7, 12, 3, 'Masculino', 'Colombiano', 7),
+       (8, 7, 2, 'Femenino', 'Brasileño', 8),
+       (9, 14, 1, 'Masculino', 'Estadounidense', 9),
+       (10, 10, 2, 'Femenino', 'Francés', 10),
+       (11, 7, 1, 'Masculino', 'Italiano', 11),
+       (12, 5, 3, 'Femenino', 'Alemán', 12),
+       (13, 9, 1, 'Masculino', 'Portugués', 13),
+       (14, 6, 2, 'Femenino', 'Británico', 50),
+       (15, 8, 1, 'Masculino', 'Canadiense', 15),
+       (16, 7, 3, 'Femenino', 'Italiano', 16),
+       (17, 5, 2, 'Masculino', 'Mexicano', 17),
+       (18, 9, 1, 'Femenino', 'Estadounidense', 18),
+       (19, 6, 2, 'Masculino', 'Mexicano', 19),
+       (20, 8, 1, 'Femenino', 'Alemán', 20);
